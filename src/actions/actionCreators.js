@@ -10,6 +10,9 @@ export const userLoggedIn = token =>
 export const getStores = () =>
     ({ type: ActionTypes.GET_STORES })
 
+export const searchStores = () =>
+    ({ type: ActionTypes.SEARCH_STORES })
+
 export const receiveStores = stores =>
     ({ type: ActionTypes.RECEIVE_STORES, stores, receivedAt: Date.now() })
 

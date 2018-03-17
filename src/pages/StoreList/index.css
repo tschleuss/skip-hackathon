@@ -47,13 +47,12 @@
 }
 
 .store-list-loading {
-    margin-top: 50px;
     margin: 0 auto;
 }
 
 .store-search-bar {
     position: fixed;
-    left:0;
+    left: 0;
     right: 0;
     top: 50px;
     z-index: 100;

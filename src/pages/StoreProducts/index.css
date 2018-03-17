@@ -1,5 +1,5 @@
 .products-list-container {
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 .products-list-item {
@@ -41,9 +41,15 @@
     color: #000;
 }
 
-.products-item-address {
+.products-item-description {
     display: block;
     color: #8c8c8c;
+}
+
+.products-item-price {
+    display: block;
+    color: #BE2C2C;
+    font-weight: bold;
 }
 
 .products-list-loading {
@@ -53,7 +59,7 @@
 
 .products-search-bar {
     position: fixed;
-    left:0;
+    left: 0;
     right: 0;
     top: 50px;
     z-index: 100;

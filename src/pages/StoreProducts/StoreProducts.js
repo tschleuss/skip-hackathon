@@ -5,31 +5,34 @@ import { getStoreProducts } from '../../actions/actionApi'
 import { Container, Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import ReactLoading from 'react-loading'
-import SearchNav from '../../components/SearchNav'
 import './index.css'
 
 class StoreProducts extends Component {
 
     componentDidMount() {
-        const storeId = this.props.match.params.id
+        const storeId = this.getStoreId()
         this.fetchProducts(storeId)
     }
 
     fetchProducts(storeId) {
-        this.props.getStoreProducts(storeId)
+        const { getStoreProducts } = this.props
+        getStoreProducts(storeId)
+    }
+
+    getStoreId() {
+        return this.props.match.params.id
     }
 
     render() {
         const { isFetching, products } = this.props
         return (
             <div>
-                <SearchNav className="products-search-bar" />
                 <Container>
                     <Row>
                         <Col sm={{ size: 12 }}>
                             <div className="products-list-container">
                                 {isFetching && (
-                                    <ReactLoading className="products-list-loading" type={'spin'} color={'#000'} width={64} height={64} />
+                                    <ReactLoading className="products-list-loading" type={'spin'} color={'#000'} width={64} height={64} delay={0} />
                                 )}
                                 {!isFetching && products.map(store => (
                                     <Link className="products-list-item" key={store.id} to={`/`}>
@@ -38,7 +41,8 @@ class StoreProducts extends Component {
                                         </div>
                                         <div className="products-item-info">
                                             <span className="products-item-name">{store.name}</span>
-                                            <span className="products-item-address">{store.description}</span>
+                                            <span className="products-item-description">{store.description}</span>
+                                            <span className="products-item-price">${store.price}</span>
                                         </div>
                                     </Link>
                                 ))}

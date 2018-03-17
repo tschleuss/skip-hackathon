@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap'
+import { Container, Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap'
 import { toast } from 'react-toastify'
 import { connect } from 'react-redux'
 import { userLoggedIn } from '../../actions/actionApi'
 import { CustomerAPI } from '../../api/Api'
 import PropTypes from 'prop-types'
+import './index.css'
 
 class Authentication extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = { email: '', password: '' }
         this.handleEmail = this.handleEmail.bind(this)
         this.handlePassword = this.handlePassword.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,7 +28,8 @@ class Authentication extends Component {
 
     handleChange(field, value) {
         this.setState({
-            [field]: value })
+            [field]: value
+        })
     }
 
     handleSubmit(event) {
@@ -61,24 +63,41 @@ class Authentication extends Component {
     }
 
     render() {
+        const { email, password } = this.state
         return (
-            <Row>
-                <Col sm={{ size: 6, offset: 3 }}>
-                    <div className="auth-form">
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup>
-                                <Label for="examemailpleEmail">Email</Label>
-                                <Input type="email" name="email" id="email" placeholder="Type your email" autoComplete="username" onChange={this.handleEmail} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="password">Password</Label>
-                                <Input type="password" name="password" id="password" placeholder="Type your password" autoComplete="current-password" onChange={this.handlePassword} />
-                            </FormGroup>
-                            <Button>Sign In</Button>
-                        </Form>
-                    </div>
-                </Col>
-            </Row>
+            <Container className="auth-container">
+                <Row>
+                    <Col sm={{ size: 6, offset: 3 }}>
+                        <div className="auth-form">
+                            <Form onSubmit={this.handleSubmit}>
+                                <FormGroup>
+                                    <Label for="examemailpleEmail">Email</Label>
+                                    <Input 
+                                        value={email} 
+                                        type="email" 
+                                        name="email" 
+                                        id="email" 
+                                        placeholder="Type your email" 
+                                        autoComplete="username" 
+                                        onChange={this.handleEmail} />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="password">Password</Label>
+                                    <Input 
+                                        value={password} 
+                                        type="password" 
+                                        name="password" 
+                                        id="password" 
+                                        placeholder="Type your password" 
+                                        autoComplete="current-password" 
+                                        onChange={this.handlePassword} />
+                                </FormGroup>
+                                <Button className="default-button">Sign In</Button>
+                            </Form>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }

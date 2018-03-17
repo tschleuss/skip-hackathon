@@ -19,6 +19,20 @@ export function getAllStores() {
     }
 }
 
+/**
+ * TODO, maybe this API should see if there's stores already in the redux store.
+ * Because we always fetch all when enter the page. Doing that, we can avoid a new request to the server.
+ */
+export function searchStores(query) {
+    return dispatch => {
+        dispatch(ActionCreators.searchStores())
+        return StoreAPI.search(query)
+            .then(({ data: stores }) => {
+                dispatch(ActionCreators.receiveStores(stores))
+            })
+    }
+}
+
 export function getStoreProducts(storeId) {
     return dispatch => {
         dispatch(ActionCreators.getStoresProducts())
